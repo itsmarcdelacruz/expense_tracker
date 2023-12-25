@@ -54,7 +54,21 @@ def save_expense_to_file(expense: Expense):
 
 def summarize_expense():
     print(f"Print Expense")
-    pass
+    filename = "expenses.csv"
+    total_amount = 0.0
+    try:
+        with open(filename, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip the header row
+            print("Expenses Summary:")
+            print(f"{'Name':20} {'Category':20} {'Amount':>10}")
+            for row in reader:
+                name, category, amount = row
+                print(f"{name:20} {category:20} {amount:>10}")
+                total_amount += float(amount)
+        print(f"\nTotal Amount Spent: ${total_amount:.2f}")
+    except FileNotFoundError:
+        print(f"No records found. '{filename}' does not exist.")
     
 
 
