@@ -14,6 +14,10 @@ def main():
     # Read file and display and summarize expenses
     summarize_expense()
 
+    #Summarize specfic expenses
+
+    #Add dates to expenses
+
 def get_expense():
     print(f"Getting Expense")
     expense_name = input("Enter expense name: ")
