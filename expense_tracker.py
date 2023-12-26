@@ -14,7 +14,7 @@ def main():
     # Read file and display and summarize expenses
     summarize_expense()
 
-    #Summarize specfic expenses
+    #Summarize specfic category expenses
 
     #Add dates to expenses
 
