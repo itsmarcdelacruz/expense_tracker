@@ -1,5 +1,6 @@
 from expense import Expense
 import csv
+from datetime import datetime
 
 def main():
     print(f"Running Expense Tracking!")
@@ -21,7 +22,16 @@ def get_expense():
     
     print(f"You selected: {selected_category}")
     
-    return Expense(expense_name, selected_category, expense_amount)
+    expense_date = input("Enter date of expense (YYYY-MM-DD): ")
+    
+        # Validate and format the date
+    try:
+        expense_date = datetime.strptime(expense_date, "%Y-%m-%d").date()
+    except ValueError:
+        print("Invalid date format. Using today's date.")
+        expense_date = datetime.today().date()
+    
+    return Expense(expense_date, expense_name, selected_category, expense_amount,)
     
 def get_category():
     categories = ['🍔 Food', '🚗 Transport', '💼 Work', '🏠 Rent/Utilities', '🎥 Entertainment', '⭐ Misc',]
@@ -47,9 +57,9 @@ def save_expense_to_file(expense: Expense):
         writer = csv.writer(file)
         # Check if the file is empty to write headers
         if file.tell() == 0:
-            writer.writerow(["Name", "Category", "Amount"])
+            writer.writerow(["Date", "Name", "Category", "Amount"])
         
-        writer.writerow([expense.name, expense.category, expense.amount])
+        writer.writerow([expense.date, expense.name, expense.category, expense.amount])
         print(f"Expense saved to {filename}")
 
 def summarize_expense():
@@ -61,10 +71,10 @@ def summarize_expense():
             reader = csv.reader(file)
             next(reader)  # Skip the header row
             print("Expenses Summary:")
-            print(f"{'Name':20} {'Category':20} {'Amount':>10}")
+            print(f"{'Date':10} {'Name':20} {'Category':20} {'Amount':>10}")
             for row in reader:
-                name, category, amount = row
-                print(f"{name:20} {category:20} {amount:>10}")
+                date, name, category, amount = row
+                print(f"{date:10} {name:20} {category:20} {amount:>10}")
                 total_amount += float(amount)
         print(f"\nTotal Amount Spent: ${total_amount:.2f}")
     except FileNotFoundError:
