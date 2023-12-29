@@ -17,8 +17,6 @@ def main():
 
     #Summarize specfic category expenses
 
-    #Add dates to expenses
-
 def get_expense():
     print(f"Getting Expense")
     expense_name = input("Enter expense name: ")
