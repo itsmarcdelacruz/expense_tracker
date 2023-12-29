@@ -8,10 +8,16 @@ def main():
     # Get user to input expenses
     expense = get_expense()
     print(expense)
+    
     # Write expense into file
     save_expense_to_file(expense)
+    
     # Read file and display and summarize expenses
     summarize_expense()
+
+    #Summarize specfic category expenses
+
+    #Add dates to expenses
 
 def get_expense():
     print(f"Getting Expense")
