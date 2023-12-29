@@ -83,6 +83,9 @@ def summarize_expense():
         print(f"\nTotal Amount Spent: ${total_amount:.2f}")
     except FileNotFoundError:
         print(f"No records found. '{filename}' does not exist.")
+        
+def summarize_specific_category():
+pass
     
 
 
