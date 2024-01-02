@@ -85,7 +85,26 @@ def summarize_expense():
         print(f"No records found. '{filename}' does not exist.")
         
 def summarize_specific_category():
-pass
+    print("Summarize Specific Category Expense")
+    selected_category = get_category()
+    filename = "expenses.csv"
+    total_amount = 0.0
+    try:
+        with open(filename, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip the header row
+            print(f"Expenses for {selected_category}:")
+            print(f"{'Date':10} {'Name':20} {'Amount':>10}")
+            for row in reader:
+                date, name, category, amount = row
+                if category == selected_category:
+                    print(f"{date:10} {name:20} {amount:>10}")
+                    total_amount += float(amount)
+            print(f"\nTotal Amount in {selected_category}: ${total_amount:.2f}")
+    except FileNotFoundError:
+        print(f"No records found. '{filename}' does not exist.")
+
+
     
 
 
