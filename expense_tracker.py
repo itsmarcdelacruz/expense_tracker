@@ -16,6 +16,10 @@ def main():
     summarize_expense()
 
     #Summarize specfic category expenses
+    
+    #Edit specific expenses 
+    
+    #Add a possible gui instead of cli
 
 def get_expense():
     print(f"Getting Expense")
